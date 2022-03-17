@@ -4,13 +4,16 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/BlankAR.unity
+    guid: 6bdce89659816455b9f906fc62d19910
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 744b813df90924c169af73489b8325de,
       type: 2}
-    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 70ddcc1d341204eea8d4b66bfc1daa05,
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: f3594b77652414a75a6e1a134c4601d8,
       type: 2}
-    UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: de8a8e4f987434338a4b1062feb8d069,
+    UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: e7a3fa566b3964e8ab5572d9d9d94e65,
       type: 2}
     com.unity.xr.arcore.PlayerSettings: {fileID: 11400000, guid: c2f7b8d7c0bff4d10874cbcf3f24af78,
       type: 2}
@@ -18,5 +21,5 @@ EditorBuildSettings:
       type: 2}
     com.unity.xr.magicleap.magic_leap_settings: {fileID: 11400000, guid: 1eb95d77acb39444e8cf44313496a874,
       type: 2}
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 58f40b12bbc864f3c96c6505a9a1e1e3,
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 9caeabdfc80799c4e9de467991b87720,
       type: 2}
