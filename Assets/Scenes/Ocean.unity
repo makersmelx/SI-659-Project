@@ -1726,6 +1726,7 @@ GameObject:
   - component: {fileID: 1422666464}
   - component: {fileID: 1422666471}
   - component: {fileID: 1422666470}
+  - component: {fileID: 1422666472}
   m_Layer: 0
   m_Name: AR Camera
   m_TagString: MainCamera
@@ -1971,6 +1972,20 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &1422666472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422666462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5216238190e38f349a74604e85f9f124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  underwater_shaking_mat: {fileID: 2100000, guid: a2d0aad91c7229a4b9d5774d8b0768a6,
+    type: 2}
 --- !u!1001 &1487170858
 PrefabInstance:
   m_ObjectHideFlags: 0

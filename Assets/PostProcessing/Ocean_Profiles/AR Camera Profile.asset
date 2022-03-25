@@ -53,12 +53,12 @@ MonoBehaviour:
     value: 1
   temperature:
     overrideState: 1
-    value: -31.9
+    value: -15.3
   tint:
     overrideState: 1
-    value: 30.7
+    value: -1.7
   colorFilter:
-    overrideState: 1
+    overrideState: 0
     value: {r: 0.601958, g: 0.6065368, b: 0.6981132, a: 1}
   hueShift:
     overrideState: 0
