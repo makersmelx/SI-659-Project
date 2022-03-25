@@ -1,4 +1,4 @@
-Shader "Hidden/GlobalFog" {
+Shader "494/GlobalFog" {
 Properties {
 	_MainTex ("Base (RGB)", 2D) = "black" {}
 }

@@ -41,11 +41,13 @@ public class SlowMo : MonoBehaviour
             {
                 Time.timeScale = 0.33f;
                 for (int i = 0; i < audios.Length; i++) audios[0].pitch = 0.5f;
+                EventBus.Publish<ToastRequest>(new ToastRequest("Slow Motion!"));
             }
             else if (Time.timeScale != 1.0f)
             {
                 Time.timeScale = 1.0f;
                 for (int i = 0; i < audios.Length; i++) audios[0].pitch = 1.0f;
+                EventBus.Publish<ToastRequest>(new ToastRequest("Slow Motion Closed!", 1.5f));
             }
         }
 
