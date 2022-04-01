@@ -151,7 +151,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 169023001}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fa35b9623162614881082335023629b, type: 3}
+  m_Script: {fileID: 11500000, guid: e054e9af24984f2bbe20b71461b25876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   behavioralCh: {x: 2, y: 6}
@@ -162,9 +162,9 @@ MonoBehaviour:
   migrationFrequency: 0.07
   posChangeFrequency: 0.7
   smoothChFrequency: 8
-  birdPref: {fileID: 3749213457490053405, guid: 164abfb7de0eb2440a88935c1d0c9d70,
+  birdPref: {fileID: 3866908435750393346, guid: e77b7e344112b5f4c8d708dc75ad5c16,
     type: 3}
-  birdsNum: 135
+  birdsNum: 20
   birdSpeed: 1
   fragmentedBirds: 20
   fragmentedBirdsYLimit: 0.5
@@ -172,10 +172,10 @@ MonoBehaviour:
   verticalWawe: 10
   rotationClamp: 1
   rotationClampValue: 50
-  scaleRandom: {x: 1.8, y: 2.2}
+  scaleRandom: {x: 1.5, y: 2.2}
   danger: 1
-  dangerRadius: 50
-  dangerSpeed: 3
+  dangerRadius: 30
+  dangerSpeed: 1.5
   dangerSoaring: 1
   dangerLayer:
     serializedVersion: 2
@@ -1421,7 +1421,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 848002146}
-  - component: {fileID: 848002145}
+  - component: {fileID: 848002147}
   m_Layer: 7
   m_Name: NVBoids Fish
   m_TagString: Untagged
@@ -1429,47 +1429,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &848002145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 848002144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fa35b9623162614881082335023629b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  behavioralCh: {x: 2, y: 6}
-  debug: 0
-  flockNum: 1
-  fragmentedFlock: 150
-  fragmentedFlockYLimit: 0.1
-  migrationFrequency: 0.07
-  posChangeFrequency: 0.7
-  smoothChFrequency: 8
-  birdPref: {fileID: 3749213457490053405, guid: 164abfb7de0eb2440a88935c1d0c9d70,
-    type: 3}
-  birdsNum: 100
-  birdSpeed: 1
-  fragmentedBirds: 20
-  fragmentedBirdsYLimit: 0.5
-  soaring: 0.5
-  verticalWawe: 10
-  rotationClamp: 1
-  rotationClampValue: 50
-  scaleRandom: {x: 1.8, y: 2.2}
-  danger: 1
-  dangerRadius: 50
-  dangerSpeed: 3
-  dangerSoaring: 1
-  dangerLayer:
-    serializedVersion: 2
-    m_Bits: 576
-  HelpURL: nvjob.github.io/unity/nvjob-boids
-  ReportAProblem: nvjob.github.io/support
-  Patrons: nvjob.github.io/patrons
 --- !u!4 &848002146
 Transform:
   m_ObjectHideFlags: 0
@@ -1484,6 +1443,47 @@ Transform:
   m_Father: {fileID: 422667776}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &848002147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848002144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e054e9af24984f2bbe20b71461b25876, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  behavioralCh: {x: 2, y: 6}
+  debug: 0
+  flockNum: 1
+  fragmentedFlock: 150
+  fragmentedFlockYLimit: 0.1
+  migrationFrequency: 0.07
+  posChangeFrequency: 0.7
+  smoothChFrequency: 8
+  birdPref: {fileID: 3749213457490053405, guid: 164abfb7de0eb2440a88935c1d0c9d70,
+    type: 3}
+  birdsNum: 20
+  birdSpeed: 1
+  fragmentedBirds: 20
+  fragmentedBirdsYLimit: 0.5
+  soaring: 0.5
+  verticalWawe: 10
+  rotationClamp: 1
+  rotationClampValue: 50
+  scaleRandom: {x: 1.5, y: 2.2}
+  danger: 1
+  dangerRadius: 30
+  dangerSpeed: 1.5
+  dangerSoaring: 1
+  dangerLayer:
+    serializedVersion: 2
+    m_Bits: 576
+  HelpURL: nvjob.github.io/unity/nvjob-boids
+  ReportAProblem: nvjob.github.io/support
+  Patrons: nvjob.github.io/patrons
 --- !u!1 &916808302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1510,7 +1510,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 916808302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fa35b9623162614881082335023629b, type: 3}
+  m_Script: {fileID: 11500000, guid: e054e9af24984f2bbe20b71461b25876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   behavioralCh: {x: 2, y: 6}
@@ -1523,7 +1523,7 @@ MonoBehaviour:
   smoothChFrequency: 8
   birdPref: {fileID: 3866908435750393346, guid: e77b7e344112b5f4c8d708dc75ad5c16,
     type: 3}
-  birdsNum: 150
+  birdsNum: 20
   birdSpeed: 1
   fragmentedBirds: 20
   fragmentedBirdsYLimit: 0.5
@@ -1531,10 +1531,10 @@ MonoBehaviour:
   verticalWawe: 10
   rotationClamp: 1
   rotationClampValue: 50
-  scaleRandom: {x: 1.8, y: 2.2}
+  scaleRandom: {x: 1.5, y: 2.2}
   danger: 1
-  dangerRadius: 50
-  dangerSpeed: 3
+  dangerRadius: 30
+  dangerSpeed: 1.5
   dangerSoaring: 1
   dangerLayer:
     serializedVersion: 2
@@ -1658,7 +1658,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 224.56, y: -101.98}
+  m_AnchoredPosition: {x: 224.56, y: -101.98001}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1095822634
@@ -1948,7 +1948,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1252727690}
-  - component: {fileID: 1252727689}
+  - component: {fileID: 1252727691}
   m_Layer: 7
   m_Name: NVBoids Fish
   m_TagString: Untagged
@@ -1956,47 +1956,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1252727689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1252727688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fa35b9623162614881082335023629b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  behavioralCh: {x: 2, y: 6}
-  debug: 0
-  flockNum: 1
-  fragmentedFlock: 150
-  fragmentedFlockYLimit: 0.1
-  migrationFrequency: 0.07
-  posChangeFrequency: 0.7
-  smoothChFrequency: 8
-  birdPref: {fileID: 3866908435750393346, guid: e77b7e344112b5f4c8d708dc75ad5c16,
-    type: 3}
-  birdsNum: 100
-  birdSpeed: 1
-  fragmentedBirds: 20
-  fragmentedBirdsYLimit: 0.5
-  soaring: 0.5
-  verticalWawe: 10
-  rotationClamp: 1
-  rotationClampValue: 50
-  scaleRandom: {x: 1.8, y: 2.2}
-  danger: 1
-  dangerRadius: 50
-  dangerSpeed: 3
-  dangerSoaring: 1
-  dangerLayer:
-    serializedVersion: 2
-    m_Bits: 576
-  HelpURL: nvjob.github.io/unity/nvjob-boids
-  ReportAProblem: nvjob.github.io/support
-  Patrons: nvjob.github.io/patrons
 --- !u!4 &1252727690
 Transform:
   m_ObjectHideFlags: 0
@@ -2011,6 +1970,47 @@ Transform:
   m_Father: {fileID: 422667776}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1252727691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252727688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e054e9af24984f2bbe20b71461b25876, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  behavioralCh: {x: 2, y: 6}
+  debug: 0
+  flockNum: 1
+  fragmentedFlock: 150
+  fragmentedFlockYLimit: 0.1
+  migrationFrequency: 0.07
+  posChangeFrequency: 0.7
+  smoothChFrequency: 8
+  birdPref: {fileID: 3866908435750393346, guid: e77b7e344112b5f4c8d708dc75ad5c16,
+    type: 3}
+  birdsNum: 20
+  birdSpeed: 1
+  fragmentedBirds: 20
+  fragmentedBirdsYLimit: 0.5
+  soaring: 0.5
+  verticalWawe: 10
+  rotationClamp: 1
+  rotationClampValue: 50
+  scaleRandom: {x: 1.5, y: 2.2}
+  danger: 1
+  dangerRadius: 30
+  dangerSpeed: 1.5
+  dangerSoaring: 1
+  dangerLayer:
+    serializedVersion: 2
+    m_Bits: 576
+  HelpURL: nvjob.github.io/unity/nvjob-boids
+  ReportAProblem: nvjob.github.io/support
+  Patrons: nvjob.github.io/patrons
 --- !u!1 &1422666462
 GameObject:
   m_ObjectHideFlags: 0
@@ -2511,7 +2511,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1722995165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2521,7 +2521,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1722995164}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fa35b9623162614881082335023629b, type: 3}
+  m_Script: {fileID: 11500000, guid: e054e9af24984f2bbe20b71461b25876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   behavioralCh: {x: 2, y: 6}
@@ -2534,7 +2534,7 @@ MonoBehaviour:
   smoothChFrequency: 8
   birdPref: {fileID: 1534700291726900181, guid: 4245ff9a4dd9cd24d8b511911616bf71,
     type: 3}
-  birdsNum: 120
+  birdsNum: 20
   birdSpeed: 1
   fragmentedBirds: 20
   fragmentedBirdsYLimit: 0.5
@@ -2542,10 +2542,10 @@ MonoBehaviour:
   verticalWawe: 10
   rotationClamp: 1
   rotationClampValue: 50
-  scaleRandom: {x: 1.8, y: 2.2}
+  scaleRandom: {x: 1.5, y: 2.2}
   danger: 1
-  dangerRadius: 50
-  dangerSpeed: 3
+  dangerRadius: 30
+  dangerSpeed: 1
   dangerSoaring: 1
   dangerLayer:
     serializedVersion: 2
@@ -2746,7 +2746,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1946096832}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fa35b9623162614881082335023629b, type: 3}
+  m_Script: {fileID: 11500000, guid: e054e9af24984f2bbe20b71461b25876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   behavioralCh: {x: 2, y: 6}
@@ -2759,7 +2759,7 @@ MonoBehaviour:
   smoothChFrequency: 8
   birdPref: {fileID: 1534700291726900181, guid: 4245ff9a4dd9cd24d8b511911616bf71,
     type: 3}
-  birdsNum: 120
+  birdsNum: 20
   birdSpeed: 1
   fragmentedBirds: 20
   fragmentedBirdsYLimit: 0.5
@@ -2767,10 +2767,10 @@ MonoBehaviour:
   verticalWawe: 10
   rotationClamp: 1
   rotationClampValue: 50
-  scaleRandom: {x: 1.8, y: 2.2}
+  scaleRandom: {x: 1.5, y: 2.2}
   danger: 1
-  dangerRadius: 50
-  dangerSpeed: 3
+  dangerRadius: 30
+  dangerSpeed: 1.5
   dangerSoaring: 1
   dangerLayer:
     serializedVersion: 2
