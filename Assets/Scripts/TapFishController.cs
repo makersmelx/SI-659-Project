@@ -11,7 +11,9 @@ public class TapFishController : MonoBehaviour
 
     [Tooltip("An object that will not affect the scene but act as a danger to make the flock escape")]
     public GameObject dangerSimulationPrefab;
+
     // Update is called once per frame
+    public LayerMask fishLayer;
 
     private GameObject currentDangerGameObject;
     private Coroutine currentDangerCoroutine;
@@ -22,18 +24,20 @@ public class TapFishController : MonoBehaviour
             && Input.GetTouch(0).phase == TouchPhase.Began
         )
         {
-            RaycastHit raycastHit;
-            if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.GetTouch(0).position), out raycastHit))
+            print(Input.GetTouch(0).position);
+            print(mainCamera.ScreenPointToRay(Input.GetTouch(0).position));
+            if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.GetTouch(0).position),
+                out var raycastHit,
+                Mathf.Infinity,
+                fishLayer
+            ))
             {
-                if (raycastHit.collider.gameObject.CompareTag("Fish"))
+                if (currentDangerCoroutine != null)
                 {
-                    if (currentDangerCoroutine != null)
-                    {
-                        StopCoroutine(currentDangerCoroutine);
-                    }
-
-                    currentDangerCoroutine = StartCoroutine(Danger(raycastHit.point));
+                    StopCoroutine(currentDangerCoroutine);
                 }
+
+                currentDangerCoroutine = StartCoroutine(Danger(raycastHit.point));
             }
         }
     }

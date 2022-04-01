@@ -72,9 +72,9 @@ public class CustomFishFlock : MonoBehaviour
     float timeTime;
     static WaitForSeconds delay0;
 
-    private bool meetDanger = false;
+    // private bool meetDanger = false;
 
-    private Vector3 dangerPosition;
+    // private Vector3 dangerPosition;
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -132,31 +132,23 @@ public class CustomFishFlock : MonoBehaviour
 
         float deltaTime = Time.deltaTime;
         timeTime += deltaTime;
-        float translateCurMagnitude = birdSpeed * dangerSpeedCh * deltaTime;
+        Vector3 translateCur = Vector3.forward * birdSpeed * dangerSpeedCh * deltaTime;
         Vector3 verticalWaweCur = Vector3.up * ((verticalWawe * 0.5f) - Mathf.PingPong(timeTime * 0.5f, verticalWawe));
         float soaringCur = soaring * dangerSoaring * deltaTime;
 
         //--------------
-        bool localMeetDanger = meetDanger;
-        if (meetDanger)
-        {
-            meetDanger = false;
-        }
 
         for (int b = 0; b < birdsNum; b++)
         {
             if (Math.Abs(birdsSpeedCur[b] - birdsSpeed[b]) > 0.001f)
                 birdsSpeedCur[b] = Mathf.SmoothDamp(birdsSpeedCur[b], birdsSpeed[b], ref spVelocity[b], 0.5f);
-            Vector3 translateLocalDirection = localMeetDanger
-                ? birdsTransform[b].InverseTransformDirection(birdsTransform[b].position - dangerPosition)
-                : Vector3.forward;
-            Vector3 translateCur = translateLocalDirection * translateCurMagnitude;
+
             birdsTransform[b].Translate(translateCur * birdsSpeed[b]);
             Vector3 tpCh = flocksTransform[curentFlock[b]].position + rdTargetPos[b] + verticalWaweCur -
                            birdsTransform[b].position;
             Quaternion rotationCur =
                 Quaternion.LookRotation(Vector3.RotateTowards(
-                    birdsTransform[b].TransformDirection(translateLocalDirection),
+                    birdsTransform[b].forward,
                     tpCh,
                     soaringCur,
                     0
@@ -178,7 +170,7 @@ public class CustomFishFlock : MonoBehaviour
 
         if (danger)
         {
-            delay0 = new WaitForSeconds(1.0f);
+            delay0 = new WaitForSeconds(0.1f);
 
             while (true)
             {
@@ -190,8 +182,27 @@ public class CustomFishFlock : MonoBehaviour
                 {
                     dangerSpeedCh = dangerSpeed;
                     dangerSoaringCh = dangerSoaring;
-                    meetDanger = true;
-                    dangerPosition = dangers[0].gameObject.transform.position;
+                    Vector3 dangerPosition = dangers[0].gameObject.transform.position;
+                    Vector3 verticalWaweCur =
+                        Vector3.up * ((verticalWawe * 0.5f) - Mathf.PingPong(timeTime * 0.5f, verticalWawe));
+                    float soaringCur = soaring * dangerSoaring * Time.deltaTime;
+                    for (int b = 0; b < birdsNum; b++)
+                    {
+                        Vector3 translateDirection = birdsTransform[b].position - dangerPosition;
+
+                        Vector3 tpCh = flocksTransform[curentFlock[b]].position + rdTargetPos[b] + verticalWaweCur -
+                                       birdsTransform[b].position;
+                        Quaternion rotationCur =
+                            Quaternion.LookRotation(Vector3.RotateTowards(
+                                translateDirection,
+                                tpCh,
+                                soaringCur,
+                                0
+                            ));
+                        if (rotationClamp == false) birdsTransform[b].rotation = rotationCur;
+                        else birdsTransform[b].localRotation = BirdsRotationClamp(rotationCur, rotationClampValue);
+                    }
+
                     yield return delay0;
                 }
                 else dangerSpeedCh = dangerSoaringCh = 1;
@@ -267,11 +278,14 @@ public class CustomFishFlock : MonoBehaviour
 
         //-------------- // For Danger and for flock hunter
 
-        if (danger == true)
+        if (danger)
         {
             GameObject dobj = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            dobj.transform.localScale = 40 * Vector3.one;
             dobj.GetComponent<MeshRenderer>().enabled = debug;
+            dobj.GetComponent<SphereCollider>().radius = 160f;
             dobj.layer = gameObject.layer;
+            dobj.tag = "Fish";
             dangerTransform = dobj.transform;
             dangerTransform.parent = thisTransform;
         }
