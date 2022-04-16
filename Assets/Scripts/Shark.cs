@@ -4,30 +4,27 @@
 // #NVJOB Simple Boids v1.1.1 - https://nvjob.github.io/unity/nvjob-boids
 
 
+using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [HelpURL("https://nvjob.github.io/unity/nvjob-boids")]
 [AddComponentMenu("#NVJOB/Boids/Shark")]
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 public class Shark : MonoBehaviour
 {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-    [Header("General Settings")]
-    public float speed = 5;
+    [Header("General Settings")] public float speed = 5;
     public float walkZone = 100;
     public Transform camRig;
     public bool debug;
 
-    [Header("Hunting Settings")]
-    public float huntingZone = 50;
+    [Header("Hunting Settings")] public float huntingZone = 50;
     public LayerMask layerFlock;
     public Material sharkMaterial;
 
@@ -35,20 +32,26 @@ public class Shark : MonoBehaviour
 
     Transform thisTransform;
     Vector3 vel, velCam, target, targetCurent, targetRandom, targetFlock;
-    float startYpos, huntTime, huntSpeed, speedSh, acselSh;
+    [SerializeField] float startYpos, huntTime, huntSpeed, speedSh, acselSh;
     bool hunting;
     static WaitForSeconds delay0 = new WaitForSeconds(8.0f);
 
+    public bool irritated;
+
+    public float curSpeed;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+    public AudioClip normalAudio;
+    public AudioClip irritatedAudio;
+    public AudioSource bgm;
+    public GameObject angerMark;
 
     void Awake()
     {
         //--------------
 
-        thisTransform = transform; 
-
+        thisTransform = transform;
+        curSpeed = speed;
         startYpos = transform.position.y;
         huntSpeed = 1.0f;
 
@@ -59,6 +62,10 @@ public class Shark : MonoBehaviour
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    private void Update()
+    {
+        angerMark.SetActive(irritated);
+    }
 
     void LateUpdate()
     {
@@ -66,7 +73,7 @@ public class Shark : MonoBehaviour
 
         Hunting();
         Move();
-        CameraRig();
+        // CameraRig();
         DebugPath();
 
         //--------------
@@ -79,24 +86,50 @@ public class Shark : MonoBehaviour
     void Hunting()
     {
         //-------------- 
+        if (irritated)
+        {
+            print("shark bites you");
+            if ((camRig.position - transform.position).magnitude > huntingZone)
+            {
+                irritated = false;
+            }
+        }
 
-        if (hunting == false)
+        curSpeed = irritated ? speed * 2 : speed;
+
+        if (hunting || irritated)
+        {
+            if (huntTime < 4.0f)
+            {
+                huntTime += Time.deltaTime * 0.5f;
+            }
+            else
+            {
+                hunting = false;
+                irritated = false;
+            }
+
+            if (irritated)
+            {
+                targetCurent = camRig.position;
+            }
+            else
+            {
+                Collider[] flockColliders = Physics.OverlapSphere(thisTransform.position, huntingZone, layerFlock);
+                if (flockColliders.Length > 0) targetFlock = flockColliders[0].transform.position;
+                targetCurent = targetFlock;
+            }
+
+            if (huntSpeed < 2.1f) huntSpeed += Time.deltaTime * 0.2f;
+            if (acselSh < 0.6f) acselSh += Time.deltaTime * 0.1f;
+        }
+        else
         {
             targetCurent = targetRandom;
             if (huntTime > 0) huntTime -= Time.deltaTime;
             else if (Physics.CheckSphere(thisTransform.position, huntingZone, layerFlock)) hunting = true;
             if (huntSpeed > 1.0f) huntSpeed -= Time.deltaTime * 0.2f;
             if (acselSh > 0) acselSh -= Time.deltaTime * 0.1f;
-        }
-        else
-        {
-            if (huntTime < 4.0f) huntTime += Time.deltaTime * 0.5f;
-            else hunting = false;
-            Collider[] flockColliders = Physics.OverlapSphere(thisTransform.position, huntingZone, layerFlock);
-            if (flockColliders.Length > 0) targetFlock = flockColliders[0].transform.position;
-            targetCurent = targetFlock;
-            if (huntSpeed < 2.1f) huntSpeed += Time.deltaTime * 0.2f;
-            if (acselSh < 0.6f) acselSh += Time.deltaTime * 0.1f;
         }
 
         if (acselSh >= 0)
@@ -106,6 +139,12 @@ public class Shark : MonoBehaviour
         }
 
         //--------------
+    }
+
+    public void Irritate()
+    {
+        huntTime = 0f;
+        irritated = true;
     }
 
 
@@ -118,9 +157,10 @@ public class Shark : MonoBehaviour
 
         target = Vector3.SmoothDamp(target, targetCurent, ref vel, 3.0f);
         target = new Vector3(target.x, startYpos, target.y);
-        Vector3 newDir = Vector3.RotateTowards(thisTransform.forward, target - thisTransform.position, Time.deltaTime * 0.35f, 0);
+        Vector3 newDir = Vector3.RotateTowards(thisTransform.forward, target - thisTransform.position,
+            Time.deltaTime * 0.35f, 0);
         thisTransform.rotation = Quaternion.LookRotation(newDir);
-        thisTransform.Translate(Vector3.forward * Time.deltaTime * huntSpeed * speed);
+        thisTransform.Translate(Vector3.forward * Time.deltaTime * huntSpeed * curSpeed);
 
         //--------------
     }
@@ -154,7 +194,7 @@ public class Shark : MonoBehaviour
 
         //--------------
     }
-    
+
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
